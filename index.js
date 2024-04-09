@@ -15,7 +15,9 @@ const app = express();
 dotenv.config();
 const PORT = process.env.port || 3000;
 app.use(express.json());
-
+app.get("/", (req, res) => {
+  res.send("Hello world ");
+});
 // routes
 app.use(
   "/public/uploads/userImages",
@@ -31,9 +33,6 @@ app.use(
   "/public/uploads/paymentProofImages",
   express.static("public/uploads/paymentProofImages")
 );
-app.get("/", (req, res) => {
-  res.send("Hello world ");
-});
 
 app.use("/api/auth", authRouters);
 app.use("/api", emailVerificationRouter);
